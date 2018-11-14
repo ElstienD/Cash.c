@@ -1,0 +1,34 @@
+// This program calculates the least amount of change (in terms of coins) that can be given as change after a transaction
+
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+
+//prompt user for an amount of change more than 0 cents
+
+    float change;
+    do
+    {
+        printf("How much change do I owe you, sir/madam? \n");
+        change = get_float();
+    }
+    while ( change < 0.0);
+
+
+//convert the user's input into cents then find out the least amount of coins you could possibly give them
+
+    int input = round(change * 100);
+    int quarters = input / 25;
+    int dimes = (input % 25) / 10;
+    int nickels = (input %25 % 10) / 5;
+    int pennies = (input % 5) / 1;
+
+//add all the individual coins together to get the total
+
+    int final_change = quarters + dimes + nickels + pennies;
+
+    printf("%i\n" , final_change);
+}
